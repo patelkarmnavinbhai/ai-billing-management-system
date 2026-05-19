@@ -40,4 +40,17 @@ public class ProductController {
 
         return productRepository.save(product);
     }
+    @DeleteMapping("/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+
+        productRepository.deleteById(id);
+
+        return "Product deleted successfully";
+    }
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable Long id) {
+
+        return productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
 }
